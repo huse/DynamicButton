@@ -15,7 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends ActionBarActivity {
@@ -27,7 +30,30 @@ public class MainActivity extends ActionBarActivity {
     Character operator = ' ';
     Character operatorSign=' ';
     HashMap<Integer,ArrayList<Integer>> position= new HashMap<Integer,ArrayList<Integer>>();
-
+    Integer abtMS[]={0,0};
+    Integer abtMC[]={0,0};
+    Integer abtMR[]={0,0};
+    Integer abtBack[]={0,0};
+    Integer abt1[]={0,0};
+    Integer abt2[]={0,0};
+    Integer abt3[]={0,0};
+    Integer abtClear[]={0,0};
+    Integer abt4[]={0,0};
+    Integer abt5[]={0,0};
+    Integer abt6[]={0,0};
+    Integer abtAdd[]={0,0};
+    Integer abt7[]={0,0};
+    Integer abt8[]={0,0};
+    Integer abt9[]={0,0};
+    Integer abtSub[]={0,0};
+    Integer abtDot[]={0,0};
+    Integer abt0[]={0,0};
+    Integer abtEqual[]={0,0};
+    Integer abtMulti[]={0,0};
+    Integer abtPow[]={0,0};
+    Integer abtSqrt[]={0,0};
+    Integer abtMinus[]={0,0};
+    Integer abtDevide[]={0,0};
     int alpha = 155;
     int shake=0;
     int nineHeight;
@@ -44,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
 {
 
 }
-    Button btMS,btMC,btMR,btBack,bt1,bt2,bt3,btClear,bt4,bt5,bt6,btAdd,bt7,bt8,bt9,btSub,btDot,bt0,btEqual,btMulti,btPow,btSqrt,btMinus,btDevide;
+    Button btMS,btMC,btMR,btBack,bt1,bt2, bt3,btClear,bt4,bt5,bt6,btAdd,bt7, bt8, bt9, btSub,btDot,bt0,btEqual,btMulti,btPow, btSqrt,btMinus,btDevide;
 
     public void widthHeight(){}
 
@@ -97,7 +123,8 @@ public class MainActivity extends ActionBarActivity {
         bt2.setTextSize(textButtonSize);
         bt3 = new Button(this);
         bt3.setText("3");
-        bt3.setWidth(forthWidth);bt3.setHeight(nineHeight);
+        bt3.setWidth(forthWidth);
+        bt3.setHeight(nineHeight);
         bt3.setTextSize(textButtonSize);
         bt4 = new Button(this);
         bt4.setText("4");
@@ -117,11 +144,13 @@ public class MainActivity extends ActionBarActivity {
         bt7.setTextSize(textButtonSize);
         bt8 = new Button(this);
         bt8.setText("8");
-        bt8.setWidth(forthWidth);bt8.setHeight(nineHeight);
+        bt8.setWidth(forthWidth);
+        bt8.setHeight(nineHeight);
         bt8.setTextSize(textButtonSize);
         bt9 = new Button(this);
         bt9.setText("9");
-        bt9.setWidth(forthWidth);bt9.setHeight(nineHeight);
+        bt9.setWidth(forthWidth);
+        bt9.setHeight(nineHeight);
         bt9.setTextSize(textButtonSize);
         bt0 = new Button(this);
         bt0.setText("0");
@@ -186,106 +215,12 @@ public class MainActivity extends ActionBarActivity {
         LayoutAddTextView(mem, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth / 4, 0, 0, 0);
         LayoutAddTextView(tvN1, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth / 6, twoNineHeight / 7, 0, 0);
         LayoutAddTextView(tvOpt, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight * 2 / 7, 0, 0);
-        LayoutAddTextView(tvN2, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth/6, twoNineHeight*2/7, 0, 0);
-        LayoutAddTextView(res, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight*3/7, 0, 0);
-        int abtMS[]={0, twoNineHeight , 0, 0};
-        int abtMC[]={forthWidth, twoNineHeight , 0, 0 };
-        int abtMR[]={forthWidth* 2, twoNineHeight , 0, 0 };
-        int abtBack[]={  3 * forthWidth, twoNineHeight, 0, 0};
-        int abt1[]={0, twoNineHeight + nineHeight, 0, 0 };
-        int abt2[]={forthWidth, twoNineHeight+ nineHeight, 0, 0 };
-        int abt3[]={forthWidth* 2, twoNineHeight +nineHeight, 0, 0 };
-        int abtClear[]={3*forthWidth, twoNineHeight  +nineHeight, 0, 0 };
-        int abt4[]={0, twoNineHeight  +2*nineHeight, 0, 0 };
-        int abt5[]={ forthWidth, twoNineHeight +2*nineHeight, 0, 0};
-        int abt6[]={forthWidth* 2, twoNineHeight  +2*nineHeight, 0, 0 };
-        int abtAdd[]={3*forthWidth, twoNineHeight  +2*nineHeight, 0, 0 };
-        int abt7[]={0, twoNineHeight  +3*nineHeight, 0, 0 };
-        int abt8[]={ forthWidth, twoNineHeight+ 3 * nineHeight, 0, 0};
-        int abt9[]={forthWidth* 2, twoNineHeight + 3 * nineHeight, 0, 0 };
-        int abtSub[]={3 * forthWidth, twoNineHeight + 3 * nineHeight, 0, 0 };
-        int abtDot[]={0, twoNineHeight +4*nineHeight, 0, 0 };
-        int abt0[]={forthWidth, twoNineHeight + 4 * nineHeight, 0, 0 };
-        int abtEqual[]={forthWidth * 2, twoNineHeight + 4 * nineHeight, 0, 0 };
-        int abtMulti[]={3 * forthWidth, twoNineHeight+ 4 * nineHeight, 0, 0 };
-        int abtPow[]={ 0, twoNineHeight+5*nineHeight, 0, 0 };
-        int abtSqrt[]={forthWidth, twoNineHeight+ 5 * nineHeight, 0, 0 };
-        int abtMinus[]={forthWidth* 2, twoNineHeight + 5 * nineHeight, 0, 0 };
-        int abtDevide[]={ 3 * forthWidth, twoNineHeight + 5 * nineHeight, 0, 0 };
+        LayoutAddTextView(tvN2, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth / 6, twoNineHeight * 2 / 7, 0, 0);
+        LayoutAddTextView(res, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight * 3 / 7, 0, 0);
+        seButtonsPosition();
+        getPositions();
 
-        LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, abtMS);
-        LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, abtMC);
-        LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, abtMR);
-        LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, abtBack);
-        LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, abt1);
-        LayoutAddButton(bt2, RelativeLayout.ALIGN_PARENT_LEFT, abt2);
-        LayoutAddButton(bt3, RelativeLayout.ALIGN_PARENT_LEFT, abt3);
-        LayoutAddButton(btClear, RelativeLayout.ALIGN_PARENT_LEFT,abtClear);
-        LayoutAddButton(bt4, RelativeLayout.ALIGN_PARENT_LEFT, abt4);
-        LayoutAddButton(bt5, RelativeLayout.ALIGN_PARENT_LEFT, abt5);
-        LayoutAddButton(bt6, RelativeLayout.ALIGN_PARENT_LEFT, abt6);
-        LayoutAddButton(btAdd, RelativeLayout.ALIGN_PARENT_LEFT,abtAdd);
-        LayoutAddButton(bt7, RelativeLayout.ALIGN_PARENT_LEFT, abt7);
-        LayoutAddButton(bt8, RelativeLayout.ALIGN_PARENT_LEFT, abt8);
-        LayoutAddButton(bt9, RelativeLayout.ALIGN_PARENT_LEFT, abt9);
-        LayoutAddButton(btSub, RelativeLayout.ALIGN_PARENT_LEFT, abtSub);
-        LayoutAddButton(btDot, RelativeLayout.ALIGN_PARENT_LEFT, abtDot);
-        LayoutAddButton(bt0, RelativeLayout.ALIGN_PARENT_LEFT, abt0);
-        LayoutAddButton(btEqual, RelativeLayout.ALIGN_PARENT_LEFT, abtEqual);
-        LayoutAddButton(btMulti, RelativeLayout.ALIGN_PARENT_LEFT, abtMulti);
-        LayoutAddButton(btPow, RelativeLayout.ALIGN_PARENT_LEFT, abtPow);
-        LayoutAddButton(btSqrt, RelativeLayout.ALIGN_PARENT_LEFT, abtSqrt);
-        LayoutAddButton(btMinus, RelativeLayout.ALIGN_PARENT_LEFT, abtMinus);
-        LayoutAddButton(btDevide, RelativeLayout.ALIGN_PARENT_LEFT, abtDevide);
 
-     /*   LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
-                , 0, 0);
-        LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
-                , 0, 0);
-        LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
-                , 0, 0);
-        LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
-                , 0, 0);
-        LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
-                + nineHeight, 0, 0);
-        LayoutAddButton(bt2, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
-                + nineHeight, 0, 0);
-        LayoutAddButton(bt3, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
-                +nineHeight, 0, 0);
-        LayoutAddButton(btClear, RelativeLayout.ALIGN_PARENT_LEFT,3*forthWidth, twoNineHeight
-                +nineHeight, 0, 0);
-        LayoutAddButton(bt4, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
-                +2*nineHeight, 0, 0);
-        LayoutAddButton(bt5, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
-                +2*nineHeight, 0, 0);
-        LayoutAddButton(bt6, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
-                +2*nineHeight, 0, 0);
-        LayoutAddButton(btAdd, RelativeLayout.ALIGN_PARENT_LEFT,3*forthWidth, twoNineHeight
-                +2*nineHeight, 0, 0);
-        LayoutAddButton(bt7, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
-                +3*nineHeight, 0, 0);
-        LayoutAddButton(bt8, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
-                + 3 * nineHeight, 0, 0);
-        LayoutAddButton(bt9, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
-                + 3 * nineHeight, 0, 0);
-        LayoutAddButton(btSub, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
-                + 3 * nineHeight, 0, 0);
-        LayoutAddButton(btDot, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
-                +4*nineHeight, 0, 0);
-        LayoutAddButton(bt0, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
-                + 4 * nineHeight, 0, 0);
-        LayoutAddButton(btEqual, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth * 2, twoNineHeight
-                + 4 * nineHeight, 0, 0);
-        LayoutAddButton(btMulti, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
-                + 4 * nineHeight, 0, 0);
-        LayoutAddButton(btPow, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
-                +5*nineHeight, 0, 0);
-        LayoutAddButton(btSqrt, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
-                + 5 * nineHeight, 0, 0);
-        LayoutAddButton(btMinus, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
-                + 5 * nineHeight, 0, 0);
-        LayoutAddButton(btDevide, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
-                + 5 * nineHeight, 0, 0);*/
 
 
 
@@ -383,7 +318,8 @@ public class MainActivity extends ActionBarActivity {
                 btMC.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
                 btMS.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
                 btMR.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-
+                getPositions();
+                randomPositions();
             }
 
             private void handleShakeEvent(int count) {
@@ -972,9 +908,110 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    private void seButtonsPosition() {
+        abtMS[0]=0;
+        abtMS[1]=twoNineHeight;
+        abtMC[0]=forthWidth;
+        abtMC[1]= twoNineHeight;
+        abtMR[0]=forthWidth* 2;
+        abtMR[1]=twoNineHeight;
+        abtBack[0]= 3 * forthWidth;
+        abtBack[1]= twoNineHeight;
+        abt1[0]=0;
+        abt1[1]= twoNineHeight + nineHeight;
+        abt2[0]=forthWidth;
+        abt2[1]= twoNineHeight+ nineHeight;
+        abt3[0]=forthWidth* 2;
+        abt3[1]=twoNineHeight +nineHeight;
+        abtClear[0]=3*forthWidth;
+        abtClear[1]=twoNineHeight  +nineHeight;
+        abt4[0]=0;
+        abt4[1]= twoNineHeight  +2*nineHeight;
+        abt5[0]= forthWidth;
+        abt5[1]= twoNineHeight +2*nineHeight;
+        abt6[0]=forthWidth* 2;
+        abt6[1]= twoNineHeight  +2*nineHeight;
+        abtAdd[0]=3*forthWidth;
+        abtAdd[1]= twoNineHeight  +2*nineHeight ;
+        abt7[0]=0;
+        abt7[1]= twoNineHeight  +3*nineHeight;
+        abt8[0]= forthWidth;
+        abt8[1]=twoNineHeight+ 3 * nineHeight;
+        abt9[0]=forthWidth* 2;
+        abt9[1]= twoNineHeight + 3 * nineHeight;
+        abtSub[0]=3 * forthWidth;
+        abtSub[1]= twoNineHeight + 3 * nineHeight;
+        abtDot[0]=0;
+        abtDot[1]=twoNineHeight +4*nineHeight;
+        abt0[0]=forthWidth;
+        abt0[1]= twoNineHeight + 4 * nineHeight;
+        abtEqual[0]=forthWidth * 2;
+        abtEqual[1]= twoNineHeight + 4 * nineHeight;
+        abtMulti[0]=3 * forthWidth;
+        abtMulti[1]= twoNineHeight+ 4 * nineHeight;
+        abtPow[0]= 0;
+        abtPow[1]= twoNineHeight+5*nineHeight;
+        abtSqrt[0]=forthWidth;
+        abtSqrt[1]= twoNineHeight+ 5 * nineHeight;
+        abtMinus[0]=forthWidth* 2;
+        abtMinus[1]= twoNineHeight + 5 * nineHeight;
+        abtDevide[0]= 3 * forthWidth;
+        abtDevide[1]=twoNineHeight + 5 * nineHeight;
+    }
 
 
 
+
+public void getPositions(){
+    LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, abtMS);
+    LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, abtMC);
+    LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, abtMR);
+    LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, abtBack);
+   LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, abt1);
+    LayoutAddButton(bt2, RelativeLayout.ALIGN_PARENT_LEFT, abt2);
+    LayoutAddButton(bt3, RelativeLayout.ALIGN_PARENT_LEFT, abt3);
+    LayoutAddButton(btClear, RelativeLayout.ALIGN_PARENT_LEFT,abtClear);
+    LayoutAddButton(bt4, RelativeLayout.ALIGN_PARENT_LEFT, abt4);
+    LayoutAddButton(bt5, RelativeLayout.ALIGN_PARENT_LEFT, abt5);
+    LayoutAddButton(bt6, RelativeLayout.ALIGN_PARENT_LEFT, abt6);
+    LayoutAddButton(btAdd, RelativeLayout.ALIGN_PARENT_LEFT,abtAdd);
+    LayoutAddButton(bt7, RelativeLayout.ALIGN_PARENT_LEFT, abt7);
+    LayoutAddButton(bt8, RelativeLayout.ALIGN_PARENT_LEFT, abt8);
+    LayoutAddButton(bt9, RelativeLayout.ALIGN_PARENT_LEFT, abt9);
+    LayoutAddButton(btSub, RelativeLayout.ALIGN_PARENT_LEFT, abtSub);
+    LayoutAddButton(btDot, RelativeLayout.ALIGN_PARENT_LEFT, abtDot);
+    LayoutAddButton(bt0, RelativeLayout.ALIGN_PARENT_LEFT, abt0);
+    LayoutAddButton(btEqual, RelativeLayout.ALIGN_PARENT_LEFT, abtEqual);
+    LayoutAddButton(btMulti, RelativeLayout.ALIGN_PARENT_LEFT, abtMulti);
+    LayoutAddButton(btPow, RelativeLayout.ALIGN_PARENT_LEFT, abtPow);
+    LayoutAddButton(btSqrt, RelativeLayout.ALIGN_PARENT_LEFT, abtSqrt);
+    LayoutAddButton(btMinus, RelativeLayout.ALIGN_PARENT_LEFT, abtMinus);
+    LayoutAddButton(btDevide, RelativeLayout.ALIGN_PARENT_LEFT, abtDevide);
+
+}
+    public void randomPositions(){
+        final Map<Integer, Integer[]> x = new HashMap<>();
+
+       x.put(1,abtMS); x.put(2, abtMC); x.put(3, abtMR); x.put(4,abtBack);
+        System.out.println(x);
+        final List<Integer[]> vs = new ArrayList<Integer[]>(x.values());
+        Collections.shuffle(vs);
+        System.out.println(vs);
+       // final Iterator<Integer[]> vIter = vs.iterator();
+        for (Integer[] k :vs) x.put(1, k);
+        System.out.println(x);
+        LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, x.get(1));
+        LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, x.get(2));
+        LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, x.get(3));
+        LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, x.get(4));
+
+
+
+        LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, x.get(1));
+        LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, x.get(2));
+        LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, x.get(3));
+        LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, x.get(4));
+    }
     public double operation() {
         switch (operator) {
             case '+':
@@ -1002,38 +1039,6 @@ public class MainActivity extends ActionBarActivity {
         }
         return result;
     }
-    public void setPositions(){
-        ArrayList<Integer> arrPosition=new ArrayList<>();
-
-    }
-
-public void getPositions(){
-  /*  LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, abtMS);
-    LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, abtMC);
-    LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, abtMR);
-    LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, abtBack);
-    LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, abt1);
-    LayoutAddButton(bt2, RelativeLayout.ALIGN_PARENT_LEFT, abt2);
-    LayoutAddButton(bt3, RelativeLayout.ALIGN_PARENT_LEFT, abt3);
-    LayoutAddButton(btClear, RelativeLayout.ALIGN_PARENT_LEFT,abtClear);
-    LayoutAddButton(bt4, RelativeLayout.ALIGN_PARENT_LEFT, abt4);
-    LayoutAddButton(bt5, RelativeLayout.ALIGN_PARENT_LEFT, abt5);
-    LayoutAddButton(bt6, RelativeLayout.ALIGN_PARENT_LEFT, abt6);
-    LayoutAddButton(btAdd, RelativeLayout.ALIGN_PARENT_LEFT,abtAdd);
-    LayoutAddButton(bt7, RelativeLayout.ALIGN_PARENT_LEFT, abt7);
-    LayoutAddButton(bt8, RelativeLayout.ALIGN_PARENT_LEFT, abt8);
-    LayoutAddButton(bt9, RelativeLayout.ALIGN_PARENT_LEFT, abt9);
-    LayoutAddButton(btSub, RelativeLayout.ALIGN_PARENT_LEFT, abtSub);
-    LayoutAddButton(btDot, RelativeLayout.ALIGN_PARENT_LEFT, abtDot);
-    LayoutAddButton(bt0, RelativeLayout.ALIGN_PARENT_LEFT, abt0);
-    LayoutAddButton(btEqual, RelativeLayout.ALIGN_PARENT_LEFT, abtEqual);
-    LayoutAddButton(btMulti, RelativeLayout.ALIGN_PARENT_LEFT, abtMulti);
-    LayoutAddButton(btPow, RelativeLayout.ALIGN_PARENT_LEFT, abtPow);
-    LayoutAddButton(btSqrt, RelativeLayout.ALIGN_PARENT_LEFT, abtSqrt);
-    LayoutAddButton(btMinus, RelativeLayout.ALIGN_PARENT_LEFT, abtMinus);
-    LayoutAddButton(btDevide, RelativeLayout.ALIGN_PARENT_LEFT, abtDevide);*/
-
-}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -1055,15 +1060,14 @@ public void getPositions(){
         super.onPause();
     }
 
-    private void LayoutAddButton(Button button, int centerInParent,int arrayPosition[] ) {
+    private void LayoutAddButton(Button button, int centerInParent,Integer arrayPosition[] ) {
         // Defining the layout parameters of the Button
         RelativeLayout.LayoutParams buttonLayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         int marginLeft= arrayPosition[0];
         int marginTop= arrayPosition[1];
-        int marginRight= arrayPosition[2];
-        int marginBottom= arrayPosition[3];
+
         // Add Margin to the LayoutParameters
-        buttonLayoutParameters.setMargins(marginLeft, marginTop, marginRight, marginBottom);
+        buttonLayoutParameters.setMargins(marginLeft, marginTop, 0, 0);
 
         // Add Rule to Layout
         buttonLayoutParameters.addRule(centerInParent);

@@ -59,3 +59,132 @@
                 // give the button an id that we know
                 but1.setId(1001);
                 layout1.addView(but1);
+
+
+                int abtMS[];
+                    int abtMC[];
+                    int abtMR[];
+                    int abtBack[];
+                    int abt1[];
+                    int abt2[];
+                    int abt3[];
+                    int abtClear[];
+                    int abt4[];
+                    int abt5[];
+                    int abt6[];
+                    int abtAdd[];
+                    int abt7[];
+                    int abt8[];
+                    int abt9[];
+                    int abtSub[];
+                    int abtDot[];
+                    int abt0[];
+                    int abtEqual[];
+                    int abtMulti[];
+                    int abtPow[];
+                    int abtSqrt[];
+                    int abtMinus[];
+                    int abtDevide[];
+
+
+
+                            abtMS[0]=0;  abtMS[1]=twoNineHeight;
+                            abtMC[0]=forthWidth;abtMC[1]= twoNineHeight;
+                            abtMR[0]=forthWidth* 2; abtMR[1]=twoNineHeight;
+                            abtBack[0]= 3 * forthWidth;abtBack[1]= twoNineHeight;
+                            abt1[0]=0; abt1[1]= twoNineHeight + nineHeight;
+                            abt2[0]=forthWidth;abt2[1]= twoNineHeight+ nineHeight;
+                            abt3[0]=forthWidth* 2; abt3[1]=twoNineHeight +nineHeight;
+                            abtClear[0]=3*forthWidth; abtClear[1]=twoNineHeight  +nineHeight;
+                            abt4[0]=0;abt4[1]= twoNineHeight  +2*nineHeight;
+                            abt5[0]= forthWidth;abt5[1]= twoNineHeight +2*nineHeight;
+                            abt6[0]=forthWidth* 2;abt6[1]= twoNineHeight  +2*nineHeight;
+                            abtAdd[0]=3*forthWidth;abtAdd[1]= twoNineHeight  +2*nineHeight ;
+                            abt7[0]=0;abt7[1]= twoNineHeight  +3*nineHeight;
+                            abt8[0]= forthWidth; abt8[1]=twoNineHeight+ 3 * nineHeight;
+                            abt9[0]=forthWidth* 2;abt9[1]= twoNineHeight + 3 * nineHeight;
+                            abtSub[0]=3 * forthWidth;abtSub[1]= twoNineHeight + 3 * nineHeight;
+                            abtDot[0]=0; abtDot[1]=twoNineHeight +4*nineHeight;
+                            abt0[0]=forthWidth;abt0[1]= twoNineHeight + 4 * nineHeight;
+                            abtEqual[0]=forthWidth * 2;abtEqual[1]= twoNineHeight + 4 * nineHeight;
+                            abtMulti[0]=3 * forthWidth;abtMulti[1]= twoNineHeight+ 4 * nineHeight;
+                            abtPow[0]= 0;abtPow[1]= twoNineHeight+5*nineHeight;
+                            abtSqrt[0]=forthWidth;abtSqrt[1]= twoNineHeight+ 5 * nineHeight;
+                            abtMinus[0]=forthWidth* 2;abtMinus[1]= twoNineHeight + 5 * nineHeight;
+                            abtDevide[0]= 3 * forthWidth; abtDevide[1]=twoNineHeight + 5 * nineHeight;
+
+
+
+                             /* LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, abtMS);
+                                    LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, abtMC);
+                                    LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, abtMR);
+                                    LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, abtBack);
+                                    LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, abt1);
+                                    LayoutAddButton(bt2, RelativeLayout.ALIGN_PARENT_LEFT, abt2);
+                                    LayoutAddButton(bt3, RelativeLayout.ALIGN_PARENT_LEFT, abt3);
+                                    LayoutAddButton(btClear, RelativeLayout.ALIGN_PARENT_LEFT,abtClear);
+                                    LayoutAddButton(bt4, RelativeLayout.ALIGN_PARENT_LEFT, abt4);
+                                    LayoutAddButton(bt5, RelativeLayout.ALIGN_PARENT_LEFT, abt5);
+                                    LayoutAddButton(bt6, RelativeLayout.ALIGN_PARENT_LEFT, abt6);
+                                    LayoutAddButton(btAdd, RelativeLayout.ALIGN_PARENT_LEFT,abtAdd);
+                                    LayoutAddButton(bt7, RelativeLayout.ALIGN_PARENT_LEFT, abt7);
+                                    LayoutAddButton(bt8, RelativeLayout.ALIGN_PARENT_LEFT, abt8);
+                                    LayoutAddButton(bt9, RelativeLayout.ALIGN_PARENT_LEFT, abt9);
+                                    LayoutAddButton(btSub, RelativeLayout.ALIGN_PARENT_LEFT, abtSub);
+                                    LayoutAddButton(btDot, RelativeLayout.ALIGN_PARENT_LEFT, abtDot);
+                                    LayoutAddButton(bt0, RelativeLayout.ALIGN_PARENT_LEFT, abt0);
+                                    LayoutAddButton(btEqual, RelativeLayout.ALIGN_PARENT_LEFT, abtEqual);
+                                    LayoutAddButton(btMulti, RelativeLayout.ALIGN_PARENT_LEFT, abtMulti);
+                                    LayoutAddButton(btPow, RelativeLayout.ALIGN_PARENT_LEFT, abtPow);
+                                    LayoutAddButton(btSqrt, RelativeLayout.ALIGN_PARENT_LEFT, abtSqrt);
+                                    LayoutAddButton(btMinus, RelativeLayout.ALIGN_PARENT_LEFT, abtMinus);
+                                    LayoutAddButton(btDevide, RelativeLayout.ALIGN_PARENT_LEFT, abtDevide);*/
+
+                                 /*   LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
+                                            , 0, 0);
+                                    LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
+                                            , 0, 0);
+                                    LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
+                                            , 0, 0);
+                                    LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
+                                            , 0, 0);
+                                    LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
+                                            + nineHeight, 0, 0);
+                                    LayoutAddButton(bt2, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
+                                            + nineHeight, 0, 0);
+                                    LayoutAddButton(bt3, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
+                                            +nineHeight, 0, 0);
+                                    LayoutAddButton(btClear, RelativeLayout.ALIGN_PARENT_LEFT,3*forthWidth, twoNineHeight
+                                            +nineHeight, 0, 0);
+                                    LayoutAddButton(bt4, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
+                                            +2*nineHeight, 0, 0);
+                                    LayoutAddButton(bt5, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
+                                            +2*nineHeight, 0, 0);
+                                    LayoutAddButton(bt6, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
+                                            +2*nineHeight, 0, 0);
+                                    LayoutAddButton(btAdd, RelativeLayout.ALIGN_PARENT_LEFT,3*forthWidth, twoNineHeight
+                                            +2*nineHeight, 0, 0);
+                                    LayoutAddButton(bt7, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
+                                            +3*nineHeight, 0, 0);
+                                    LayoutAddButton(bt8, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
+                                            + 3 * nineHeight, 0, 0);
+                                    LayoutAddButton(bt9, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
+                                            + 3 * nineHeight, 0, 0);
+                                    LayoutAddButton(btSub, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
+                                            + 3 * nineHeight, 0, 0);
+                                    LayoutAddButton(btDot, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
+                                            +4*nineHeight, 0, 0);
+                                    LayoutAddButton(bt0, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
+                                            + 4 * nineHeight, 0, 0);
+                                    LayoutAddButton(btEqual, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth * 2, twoNineHeight
+                                            + 4 * nineHeight, 0, 0);
+                                    LayoutAddButton(btMulti, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
+                                            + 4 * nineHeight, 0, 0);
+                                    LayoutAddButton(btPow, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight
+                                            +5*nineHeight, 0, 0);
+                                    LayoutAddButton(btSqrt, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth, twoNineHeight
+                                            + 5 * nineHeight, 0, 0);
+                                    LayoutAddButton(btMinus, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth* 2, twoNineHeight
+                                            + 5 * nineHeight, 0, 0);
+                                    LayoutAddButton(btDevide, RelativeLayout.ALIGN_PARENT_LEFT, 3 * forthWidth, twoNineHeight
+                                            + 5 * nineHeight, 0, 0);*/
