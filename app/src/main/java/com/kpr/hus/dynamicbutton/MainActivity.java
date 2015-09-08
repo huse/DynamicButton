@@ -11,14 +11,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends ActionBarActivity {
@@ -29,9 +30,10 @@ public class MainActivity extends ActionBarActivity {
     Double minus = 0.0;
     Character operator = ' ';
     Character operatorSign=' ';
-    HashMap<Integer,ArrayList<Integer>> position= new HashMap<Integer,ArrayList<Integer>>();
+    //HashMap<Integer,ArrayList<Integer>> position= new HashMap<Integer,ArrayList<Integer>>();
     Integer abtMS[]={0,0};
-    Integer abtMC[]={0,0};
+    //Integer abtMC[]={0,0};
+    Integer atoggle[]={0,0};
     Integer abtMR[]={0,0};
     Integer abtBack[]={0,0};
     Integer abt1[]={0,0};
@@ -62,6 +64,8 @@ public class MainActivity extends ActionBarActivity {
     int textButtonSize;
     int forthWidth;
     boolean progress= true;
+    boolean crazy= true;
+    boolean superCrazy= true;
 
     // The following are used for the shake detection
     private SensorManager mSensorManager;
@@ -71,7 +75,8 @@ public class MainActivity extends ActionBarActivity {
 
 }
     Button btMS,btMC,btMR,btBack,bt1,bt2, bt3,btClear,bt4,bt5,bt6,btAdd,bt7, bt8, bt9, btSub,btDot,bt0,btEqual,btMulti,btPow, btSqrt,btMinus,btDevide;
-
+    ToggleButton toggle;
+    TextView res;
     public void widthHeight(){}
 
     @Override
@@ -97,20 +102,20 @@ public class MainActivity extends ActionBarActivity {
         tvMemory.setText("M: ");
         tvMemory.setTextSize(textNineHeight);
         final TextView mem = new TextView(this);
-        mem.setText("2343");
+        mem.setText("");
         mem.setTextSize(textNineHeight);
         final TextView tvN1 = new TextView(this);
-        tvN1.setText("width");
+        tvN1.setText("");
         tvN1.setTextSize(textNineHeight);
         final TextView tvOpt = new TextView(this);
-        tvOpt.setText("+");
+        tvOpt.setText("");
         tvOpt.setTextSize(textNineHeight);
         tvOpt.setTextColor(0xFFF06D2F);
         final TextView tvN2 = new TextView(this);
-        tvN2.setText("height.toSting");
+        tvN2.setText("");
         tvN2.setTextSize(textNineHeight);
-        final TextView res = new TextView(this);
-        res.setText("23439789789799789453455");
+        res = new TextView(this);
+        res.setText("");
         res.setTextSize(18 * textNineHeight/10);
         // Creating a new Left Button
         bt1 = new Button(this);
@@ -202,9 +207,12 @@ public class MainActivity extends ActionBarActivity {
         btMR = new Button(this);
         btMR.setText("MR");
         btMR.setWidth(forthWidth);btMR.setHeight(nineHeight);
-        btMC = new Button(this);
-        btMC.setText("MC");
-        btMC.setWidth(forthWidth);btMC.setHeight(nineHeight);
+       // btMC = new Button(this);
+       // btMC.setText("MC");
+      //  btMC.setWidth(forthWidth);btMC.setHeight(nineHeight);
+        toggle = new ToggleButton(this);
+        toggle.setText("Crazy");
+        toggle.setWidth(forthWidth);toggle.setHeight(nineHeight);
         btMinus = new Button(this);
         btMinus.setText("-+");
         btMinus.setWidth(forthWidth);btMinus.setHeight(nineHeight);
@@ -217,8 +225,8 @@ public class MainActivity extends ActionBarActivity {
         LayoutAddTextView(tvOpt, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight * 2 / 7, 0, 0);
         LayoutAddTextView(tvN2, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth / 6, twoNineHeight * 2 / 7, 0, 0);
         LayoutAddTextView(res, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight * 3 / 7, 0, 0);
-        seButtonsPosition();
-        getPositions();
+        putButtonsPositionInArray();
+        buttonOriginalPosition();
 
 
 
@@ -235,7 +243,8 @@ public class MainActivity extends ActionBarActivity {
         relativeLayout.addView(bt7);
         relativeLayout.addView(bt8);
         relativeLayout.addView(bt9);
-        relativeLayout.addView(btMC);
+        //relativeLayout.addView(btMC);
+        relativeLayout.addView(toggle);
         relativeLayout.addView(btMS);
         relativeLayout.addView(btMR);
         relativeLayout.addView(btMinus);
@@ -275,57 +284,26 @@ public class MainActivity extends ActionBarActivity {
 				 * device has been shook.
 				 */
 
-
-                res.setText(count + "");
-
-                // restt.setTextColor(0xFFF06D2F);
-                Random rand = new Random();
-                ;
-                //tvN1.setText(bb+"");
-               /* tvN2.setText(bt7.getLeft()+"");
-                mem.setText(bt9.getX()+"");
-                int p= bt2.getBottom();
-               bt2.setX(bt8.getX());
-                bt2.setY(bt8.getY());
-                bt1.setBottom(p);*/
-
-                //The random generator creates values between [0,256) for use as RGB values used below to create a random color
+               // Random rand = new Random();
+                 //The random generator creates values between [0,256) for use as RGB values used below to create a random color
                 //We call the RelativeLayout object and we change the color.  The first parameter in argb() is the alpha.
+                if(crazy){
+                buttonRandomColor(res);
+                    res.setText(count + "");
+                }
 
-                res.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                handleShakeEvent(count);
-                bt1.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt2.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt3.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt4.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt5.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt6.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt7.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt8.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt9.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                bt0.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btDot.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btEqual.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btAdd.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btSub.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btMulti.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btDevide.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btSqrt.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btPow.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btMinus.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btClear.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btBack.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btMC.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btMS.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                btMR.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
-                getPositions();
-                randomPositions();
+                if (superCrazy){
+                    buttonRandomColor(res);
+                    randomPositions();
+
+                }
             }
 
-            private void handleShakeEvent(int count) {
+           /* private void handleShakeEvent(int count) {
                 shake = count;
-            }
+            }*/
         });
+
 
 
 
@@ -335,9 +313,15 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 // Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
                 if (progress)
-                    res.setText(res.getText()+"1");
-                else if (!progress)
-                { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"1");progress=true;}
+                    res.setText(res.getText() + "1");
+                else if (!progress) {
+                    res.setText("");
+                    tvOpt.setText("");
+                    tvN1.setText("");
+                    tvN2.setText("");
+                    res.setText(res.getText() + "1");
+                    progress = true;
+                }
             }
         });
         bt2.setOnClickListener(new View.OnClickListener() {
@@ -776,7 +760,7 @@ public class MainActivity extends ActionBarActivity {
                     }catch(Exception e){
                         System.out.print("Wrong button pressed");
                     }
-                    res.setText("");tvOpt.setText("Sqrt"+ " ");tvN1.setText(num1.toString());
+                    res.setText("");tvOpt.setText("S"+ " ");tvN1.setText(num1.toString());
                     operator='s';
                     progress=true;
                     tvN2.setText("");}
@@ -887,12 +871,25 @@ public class MainActivity extends ActionBarActivity {
                 res.setText(memory.toString());
             }
         });
-        btMC.setOnClickListener(new View.OnClickListener(){
+        /*btMC.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 memory=0.0;
                 mem.setText(memory.toString());
             }
 
+        });*/
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(getApplicationContext(), "Crazy is on. Shake the device.", Toast.LENGTH_SHORT).show();
+                    crazy=true;
+                } else {
+                    crazy=false;
+                    superCrazy=false;
+                    buttonOriginalPosition();
+                    Toast.makeText(getApplicationContext(), "Crazy is off.", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
         btMinus.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -906,13 +903,73 @@ public class MainActivity extends ActionBarActivity {
                 //
             }
         });
+        buttonNormalColor(res);
     }
 
-    private void seButtonsPosition() {
+    private void buttonRandomColor(TextView res) {
+        Random rand = new Random();
+        res.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt1.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt2.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt3.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt4.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt5.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt6.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt7.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt8.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt9.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        bt0.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btDot.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btEqual.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btAdd.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btSub.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btMulti.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btDevide.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btSqrt.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btPow.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btMinus.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btClear.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btBack.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        //btMC.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        toggle.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btMS.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        btMR.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+    }
+    private void buttonNormalColor(TextView res) {
+        res.setBackgroundColor(Color.argb(0, 0, 0, 0));
+        bt1.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt2.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt3.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt4.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt5.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt6.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt7.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt8.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt9.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        bt0.setBackgroundColor(Color.argb(55, 0, 0, 0));
+        btDot.setBackgroundColor(Color.argb(55, 0, 0, 55));
+        btEqual.setBackgroundColor(Color.argb(55, 0, 0, 55));
+        btAdd.setBackgroundColor(Color.argb(55, 55, 0, 0));
+        btSub.setBackgroundColor(Color.argb(55, 55, 0, 0));
+        btMulti.setBackgroundColor(Color.argb(55, 55, 0, 0));
+        btDevide.setBackgroundColor(Color.argb(55, 55, 0, 0));
+        btSqrt.setBackgroundColor(Color.argb(55, 55, 0, 0));
+        btPow.setBackgroundColor(Color.argb(55, 55, 0, 0));
+        btMinus.setBackgroundColor(Color.argb(55, 55, 0, 0));
+        btClear.setBackgroundColor(Color.argb(55, 0, 50, 50));
+        btBack.setBackgroundColor(Color.argb(55, 0, 50, 50));
+        //btMC.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
+        toggle.setBackgroundColor(Color.argb(55, 255, 0, 0));
+        btMS.setBackgroundColor(Color.argb(55, 0, 0, 55));
+        btMR.setBackgroundColor(Color.argb(55, 0, 0, 55));
+    }
+    private void putButtonsPositionInArray() {
         abtMS[0]=0;
         abtMS[1]=twoNineHeight;
-        abtMC[0]=forthWidth;
-        abtMC[1]= twoNineHeight;
+        //abtMC[0]=forthWidth;
+       // abtMC[1]= twoNineHeight;
+        atoggle[0]=forthWidth;
+        atoggle[1]= twoNineHeight;
         abtMR[0]=forthWidth* 2;
         abtMR[1]=twoNineHeight;
         abtBack[0]= 3 * forthWidth;
@@ -962,9 +1019,10 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-public void getPositions(){
+public void buttonOriginalPosition(){
     LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, abtMS);
-    LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, abtMC);
+   // LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, abtMC);
+    LayoutAddButton(toggle, RelativeLayout.ALIGN_PARENT_LEFT, atoggle);
     LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, abtMR);
     LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, abtBack);
    LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, abt1);
@@ -990,27 +1048,63 @@ public void getPositions(){
 
 }
     public void randomPositions(){
-        final Map<Integer, Integer[]> x = new HashMap<>();
 
-       x.put(1,abtMS); x.put(2, abtMC); x.put(3, abtMR); x.put(4,abtBack);
-        System.out.println(x);
-        final List<Integer[]> vs = new ArrayList<Integer[]>(x.values());
-        Collections.shuffle(vs);
-        System.out.println(vs);
-       // final Iterator<Integer[]> vIter = vs.iterator();
-        for (Integer[] k :vs) x.put(1, k);
-        System.out.println(x);
-        LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, x.get(1));
-        LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, x.get(2));
-        LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, x.get(3));
-        LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, x.get(4));
+        final List<Integer[]> x = new ArrayList<>();
+        x.add(abtMS);
+       // x.add(abtMC);
+        x.add(atoggle);
+        x.add(abtMR);
+        x.add(abtBack);
+        x.add(abt1);
+        x.add(abt2);
+        x.add(abt3);
+        x.add(abtClear);
+        x.add(abt4);
+        x.add(abt5);
+        x.add(abt6);
+        x.add(abtAdd);
+        x.add(abt7);
+        x.add(abt8);
+        x.add(abt9);
+        x.add(abtSub);
+        x.add(abtDot);
+        x.add(abt0);
+        x.add(abtEqual);
+        x.add(abtMulti);
+        x.add(abtPow);
+        x.add(abtSqrt);
+        x.add(abtMinus);
+        x.add(abtDevide);
+
+        Collections.shuffle(x);
 
 
 
-        LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, x.get(1));
-        LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, x.get(2));
-        LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, x.get(3));
-        LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, x.get(4));
+        LayoutAddButton(btMS, RelativeLayout.ALIGN_PARENT_LEFT, x.get(0));
+        //LayoutAddButton(btMC, RelativeLayout.ALIGN_PARENT_LEFT, x.get(1));
+        LayoutAddButton(toggle, RelativeLayout.ALIGN_PARENT_LEFT, x.get(1));
+        LayoutAddButton(btMR, RelativeLayout.ALIGN_PARENT_LEFT, x.get(2));
+        LayoutAddButton(btBack, RelativeLayout.ALIGN_PARENT_LEFT, x.get(3));
+        LayoutAddButton(bt1, RelativeLayout.ALIGN_PARENT_LEFT, x.get(4));
+        LayoutAddButton(bt2, RelativeLayout.ALIGN_PARENT_LEFT, x.get(5));
+        LayoutAddButton(bt3, RelativeLayout.ALIGN_PARENT_LEFT, x.get(6));
+        LayoutAddButton(btClear, RelativeLayout.ALIGN_PARENT_LEFT,x.get(7));
+        LayoutAddButton(bt4, RelativeLayout.ALIGN_PARENT_LEFT, x.get(8));
+        LayoutAddButton(bt5, RelativeLayout.ALIGN_PARENT_LEFT, x.get(9));
+        LayoutAddButton(bt6, RelativeLayout.ALIGN_PARENT_LEFT, x.get(10));
+        LayoutAddButton(btAdd, RelativeLayout.ALIGN_PARENT_LEFT,x.get(11));
+        LayoutAddButton(bt7, RelativeLayout.ALIGN_PARENT_LEFT, x.get(12));
+        LayoutAddButton(bt8, RelativeLayout.ALIGN_PARENT_LEFT, x.get(13));
+        LayoutAddButton(bt9, RelativeLayout.ALIGN_PARENT_LEFT, x.get(14));
+        LayoutAddButton(btSub, RelativeLayout.ALIGN_PARENT_LEFT, x.get(15));
+        LayoutAddButton(btDot, RelativeLayout.ALIGN_PARENT_LEFT, x.get(16));
+        LayoutAddButton(bt0, RelativeLayout.ALIGN_PARENT_LEFT, x.get(17));
+        LayoutAddButton(btEqual, RelativeLayout.ALIGN_PARENT_LEFT, x.get(18));
+        LayoutAddButton(btMulti, RelativeLayout.ALIGN_PARENT_LEFT, x.get(19));
+        LayoutAddButton(btPow, RelativeLayout.ALIGN_PARENT_LEFT, x.get(20));
+        LayoutAddButton(btSqrt, RelativeLayout.ALIGN_PARENT_LEFT, x.get(21));
+        LayoutAddButton(btMinus, RelativeLayout.ALIGN_PARENT_LEFT, x.get(22));
+        LayoutAddButton(btDevide, RelativeLayout.ALIGN_PARENT_LEFT, x.get(23));
     }
     public double operation() {
         switch (operator) {
@@ -1114,7 +1208,27 @@ public void getPositions(){
         if (id == R.id.action_settings) {
             return true;
         }
-
+        if (id == R.id.normal) {
+            buttonNormalColor(res);
+            crazy=false;
+            superCrazy=false;
+            buttonOriginalPosition();
+            return true;
+        }
+        if (id == R.id.crazy) {
+            buttonRandomColor(res);
+            crazy=true;
+            superCrazy=false;
+            Toast.makeText(getApplicationContext(), "Crazy is on. Shake the device.", Toast.LENGTH_SHORT).show();
+            return true;
+        }if (id == R.id.superCrazy) {
+            buttonRandomColor(res);
+            randomPositions();
+            crazy=true;
+            superCrazy=true;
+            Toast.makeText(getApplicationContext(), "Super Crazy is on. Shake the device.", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
