@@ -21,7 +21,7 @@ public class ShakeDetector implements SensorEventListener {
      *  many G's it takes to register a shake
      */
     private static final float SHAKE_THRESHOLD_GRAVITY = 1.5F;
-    private static final int SHAKE_SLOP_TIME_MS = 50;
+    private static final int SHAKE_SLOP_TIME_MS = 300;
     private static final int SHAKE_COUNT_RESET_TIME_MS = 2000;
 
     private OnShakeListener mListener;

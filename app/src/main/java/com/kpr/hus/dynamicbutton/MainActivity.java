@@ -287,12 +287,14 @@ public class MainActivity extends ActionBarActivity {
                // Random rand = new Random();
                  //The random generator creates values between [0,256) for use as RGB values used below to create a random color
                 //We call the RelativeLayout object and we change the color.  The first parameter in argb() is the alpha.
-                if(crazy){
+                if(crazy&&!superCrazy){
                 buttonRandomColor(res);
-                    res.setText(count + "");
+                    addToResultByShake();
+
                 }
 
-                if (superCrazy){
+                else if (superCrazy){
+                    addToResultByShake();
                     buttonRandomColor(res);
                     randomPositions();
 
@@ -904,6 +906,15 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         buttonNormalColor(res);
+    }
+
+    private void addToResultByShake() {
+        Double ressult=0.0;
+        if(res.getText().length()>0){
+        ressult=Double.parseDouble(res.getText().toString());
+        }
+        ressult++;
+        res.setText(""+ressult);
     }
 
     private void buttonRandomColor(TextView res) {
