@@ -6,7 +6,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,12 +19,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
     Double num1=0.0;
     Double num2=0.0;
     Double result= 0.0;
@@ -71,9 +78,9 @@ public class MainActivity extends ActionBarActivity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
-{
+    private InterstitialAd mInterstitialAd;
+    private static final String TAG = "MainActivity";
 
-}
     Button btMS,btMC,btMR,btBack,bt1,bt2, bt3,btClear,bt4,bt5,bt6,btAdd,bt7, bt8, bt9, btSub,btDot,bt0,btEqual,btMulti,btPow, btSqrt,btMinus,btDevide;
     ToggleButton toggle;
     TextView res;
@@ -83,11 +90,33 @@ public class MainActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+// this code is for Interstitial ads
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-6744562395705685");
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("YOUR_DEVICE_HASH")
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+
+        // this code is for banner advertise
+     /*   AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest2 = new AdRequest.Builder()
+                .addTestDevice("YOUR_DEVICE_HASH")
+                .build();
+        mAdView.loadAd(adRequest2);*/
+
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
-        nineHeight=height/9;
+        nineHeight=height/10;
         twoNineHeight= nineHeight  * 18/10;
         textNineHeight= nineHeight/12;
         textButtonSize= nineHeight/8;
@@ -102,7 +131,7 @@ public class MainActivity extends ActionBarActivity {
         tvMemory.setText("M: ");
         tvMemory.setTextSize(textNineHeight);
         final TextView mem = new TextView(this);
-        mem.setText("");
+        mem.setText(height+"");
         mem.setTextSize(textNineHeight);
         final TextView tvN1 = new TextView(this);
         tvN1.setText("");
@@ -217,6 +246,18 @@ public class MainActivity extends ActionBarActivity {
         btMinus.setText("-+");
         btMinus.setWidth(forthWidth);btMinus.setHeight(nineHeight);
         btMinus.setTextSize(textButtonSize);
+        // this code is for banner advertise
+        AdView mAdView = new AdView(this);
+        mAdView.setAdUnitId("ca-app-pub-6744562395705685");
+        mAdView.setAdSize(AdSize.SMART_BANNER);
+        AdRequest adRequest2 = new AdRequest.Builder().addTestDevice("YOUR_DEVICE_HASH").build();
+        LayoutAddAdView(mAdView, RelativeLayout.ALIGN_PARENT_LEFT, 0,(twoNineHeight + 6 * nineHeight)+(height/592) , 0, 0);
+
+        try{mAdView.loadAd(adRequest2);
+        }
+        catch(Exception e){
+            Log.v(TAG, "Error in loading ad");
+        }
 
         // Add a Layout to the Buttons
         LayoutAddTextView(tvMemory, RelativeLayout.ALIGN_PARENT_LEFT, 0, 0, 0, 0);
@@ -225,6 +266,7 @@ public class MainActivity extends ActionBarActivity {
         LayoutAddTextView(tvOpt, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight * 2 / 7, 0, 0);
         LayoutAddTextView(tvN2, RelativeLayout.ALIGN_PARENT_LEFT, forthWidth / 6, twoNineHeight * 2 / 7, 0, 0);
         LayoutAddTextView(res, RelativeLayout.ALIGN_PARENT_LEFT, 0, twoNineHeight * 3 / 7, 0, 0);
+
         putButtonsPositionInArray();
         buttonOriginalPosition();
 
@@ -265,6 +307,8 @@ public class MainActivity extends ActionBarActivity {
         relativeLayout.addView(tvOpt);
         relativeLayout.addView(tvN2);
         relativeLayout.addView(res);
+        relativeLayout.addView(mAdView);
+
 
         // Setting the RelativeLayout as our content view
         setContentView(relativeLayout, relativeLayoutParams);
@@ -893,19 +937,21 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         });
-        btMinus.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btMinus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
 
-                if((res.getText().toString().length() != 0)&& Double.parseDouble(res.getText().toString()) !=0.0) {
-                    minus = -1.0*Double.parseDouble(res.getText().toString());
-                    res.setText( minus.toString());
+                if ((res.getText().toString().length() != 0) && Double.parseDouble(res.getText().toString()) != 0.0) {
+                    minus = -1.0 * Double.parseDouble(res.getText().toString());
+                    res.setText(minus.toString());
                 }
 
                 //
             }
         });
         buttonNormalColor(res);
+
+        // End of create method.
     }
 
     private void addToResultByShake() {
@@ -1205,7 +1251,19 @@ public void buttonOriginalPosition(){
         LayoutAddTextView(tv, centerInParent, 0, 0, 0, 0);
     }
 
+    private void LayoutAddAdView(AdView adV, int centerInParent, int marginLeft, int marginTop, int marginRight, int marginBottom) {
+        // Defining the layout parameters of the AdView
+        RelativeLayout.LayoutParams tvLayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+        // Add Margin to the LayoutParameters
+        tvLayoutParameters.setMargins(marginLeft, marginTop, marginRight, marginBottom);
+
+        // Add Rule to Layout
+        tvLayoutParameters.addRule(centerInParent);
+
+        // Setting the parameters on the AdView
+        adV.setLayoutParams(tvLayoutParameters);
+    }
 
 
     @Override
