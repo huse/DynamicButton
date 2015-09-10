@@ -9,4 +9,6 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/superCrazy" android:title="@string/superCrazy"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/instruction" android:title="@string/instruction"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

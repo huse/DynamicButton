@@ -1,6 +1,7 @@
 package com.kpr.hus.dynamicbutton;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
 // this code is for Interstitial ads
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-6744562395705685");
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("YOUR_DEVICE_HASH")
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         tvMemory.setText("M: ");
         tvMemory.setTextSize(textNineHeight);
         final TextView mem = new TextView(this);
-        mem.setText(height+"");
+        mem.setText(Setting.sensitivity()+"");
         mem.setTextSize(textNineHeight);
         final TextView tvN1 = new TextView(this);
         tvN1.setText("");
@@ -248,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
         btMinus.setTextSize(textButtonSize);
         // this code is for banner advertise
         AdView mAdView = new AdView(this);
-        mAdView.setAdUnitId("ca-app-pub-6744562395705685");
+        mAdView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
         mAdView.setAdSize(AdSize.SMART_BANNER);
         AdRequest adRequest2 = new AdRequest.Builder().addTestDevice("YOUR_DEVICE_HASH").build();
         LayoutAddAdView(mAdView, RelativeLayout.ALIGN_PARENT_LEFT, 0,(twoNineHeight + 6 * nineHeight)+(height/592) , 0, 0);
@@ -317,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mShakeDetector = new ShakeDetector();
+        mShakeDetector = new ShakeDetector(Setting.sensitivity());
         mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
 
             @Override
@@ -929,10 +930,16 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     Toast.makeText(getApplicationContext(), "Crazy is on. Shake the device.", Toast.LENGTH_SHORT).show();
                     crazy=true;
+                    superCrazy=true;
+                    toggle.setTextOn("Crazy");
+                    buttonRandomColor(res);
+                    randomPositions();
                 } else {
                     crazy=false;
                     superCrazy=false;
                     buttonOriginalPosition();
+                    buttonNormalColor(res);
+                    toggle.setTextOff("Normal");
                     Toast.makeText(getApplicationContext(), "Crazy is off.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -1275,6 +1282,8 @@ public void buttonOriginalPosition(){
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingIntent = new Intent(getApplicationContext(),Setting.class);
+            startActivity(settingIntent);
             return true;
         }
         if (id == R.id.normal) {
@@ -1298,6 +1307,12 @@ public void buttonOriginalPosition(){
             Toast.makeText(getApplicationContext(), "Super Crazy is on. Shake the device.", Toast.LENGTH_SHORT).show();
             return true;
         }
+        if (id == R.id.instruction) {
+            Intent instructionintent = new Intent(getApplicationContext(),Instruction.class);
+            startActivity(instructionintent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

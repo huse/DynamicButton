@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">DynamicButton</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello</string>
     <string name="action_settings">Settings</string>
     <string name="normal">Normal</string>
     <string name="crazy">Crazy</string>
     <string name="superCrazy">Super Crazy</string>
+    <string name="title_activity_instruction" translatable="false">Instruction</string>
+    <string name="instruction">Instruction</string>
+    <string name="title_activity_setting">setting</string>
 
 
     <!--ca-app-pub-6744562395705685/3925079455-->

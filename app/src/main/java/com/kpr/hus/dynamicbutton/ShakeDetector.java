@@ -12,6 +12,11 @@ import android.hardware.SensorManager;
 import android.util.FloatMath;
 
 public class ShakeDetector implements SensorEventListener {
+   private static float sensitivity=1.5F;
+    public ShakeDetector(float sensitivity){
+this.sensitivity=sensitivity;
+
+    }
 
     /*
      * The gForce that is necessary to register as shake.
@@ -20,7 +25,9 @@ public class ShakeDetector implements SensorEventListener {
      * from the Google Play Store and run it to see how
      *  many G's it takes to register a shake
      */
-    private static final float SHAKE_THRESHOLD_GRAVITY = 1.5F;
+
+
+    private static final float SHAKE_THRESHOLD_GRAVITY = sensitivity;
     private static final int SHAKE_SLOP_TIME_MS = 300;
     private static final int SHAKE_COUNT_RESET_TIME_MS = 2000;
 
