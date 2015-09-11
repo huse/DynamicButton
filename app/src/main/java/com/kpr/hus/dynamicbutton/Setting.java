@@ -34,7 +34,6 @@ static TextView tv1;
                 String ss= et1.getText().toString();
 
                sensor=Float.parseFloat(ss);
-
             }
         });
     }
