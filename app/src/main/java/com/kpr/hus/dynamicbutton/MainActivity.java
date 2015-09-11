@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         tvMemory.setText("M: ");
         tvMemory.setTextSize(textNineHeight);
         final TextView mem = new TextView(this);
-        mem.setText(Setting.sensitivity()+"");
+        mem.setText("");
         mem.setTextSize(textNineHeight);
         final TextView tvN1 = new TextView(this);
         tvN1.setText("");
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         tvN2.setTextSize(textNineHeight);
         res = new TextView(this);
         res.setText("");
-        res.setTextSize(18 * textNineHeight/10);
+        res.setTextSize(18 * textNineHeight / 10);
         // Creating a new Left Button
         bt1 = new Button(this);
         bt1.setText("1");
@@ -318,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mShakeDetector = new ShakeDetector(Setting.sensitivity());
+        mShakeDetector = new ShakeDetector();
         mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
 
             @Override
@@ -484,6 +483,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Wrong button pressed");
                     }
                     res.setText("");tvOpt.setText("+"+ " ");tvN1.setText(num1.toString());
+                    eliminateDotAndZero(tvN1);
                     operator='+';
                     progress=true;
                     tvN2.setText("");}
@@ -499,7 +499,9 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         tvN1.setText(num1.toString());
+                        eliminateDotAndZero(tvN1);
                         tvN2.setText(num2.toString());
+                        eliminateDotAndZero(tvN2);
                         res.setText("");
                         progress=true;}
 
@@ -514,6 +516,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.print("Wrong button pressed");
                             }
                             res.setText("");tvOpt.setText("+"+ " ");tvN1.setText(num1.toString());
+                            eliminateDotAndZero(tvN1);
                             operator='+';
                             progress=true;
                             tvN2.setText("");
@@ -532,6 +535,7 @@ public class MainActivity extends AppCompatActivity {
                         Double resssult=operation();
                         num1=resssult;
                         tvN1.setText(resssult.toString());
+                        eliminateDotAndZero(tvN1);
                         tvN2.setText("");
                         tvOpt.setText("+"+ " ");
                         res.setText("");
@@ -549,6 +553,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Wrong button pressed");
                     }
                     res.setText("");tvOpt.setText("-"+ " ");tvN1.setText(num1.toString());
+                    eliminateDotAndZero(tvN1);
                     operator='-';
                     progress=true;
                     tvN2.setText("");}
@@ -563,7 +568,9 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         tvN1.setText(num1.toString());
+                        eliminateDotAndZero(tvN1);
                         tvN2.setText(num2.toString());
+                        eliminateDotAndZero(tvN2);
                         res.setText("");}
 
                 }
@@ -578,6 +585,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.print("Wrong button pressed");
                             }
                             res.setText("");tvOpt.setText("-"+ " ");tvN1.setText(num1.toString());
+                            eliminateDotAndZero(tvN1);
                             operator='-';
                             progress=true;
                             tvN2.setText("");
@@ -595,6 +603,7 @@ public class MainActivity extends AppCompatActivity {
                             Double resssult=operation();
                             num1=resssult;
                             tvN1.setText(resssult.toString());
+                            eliminateDotAndZero(tvN1);
                             tvN2.setText("");
                             tvOpt.setText("-"+ " ");
                             res.setText("");
@@ -612,6 +621,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Wrong button pressed");
                     }
                     res.setText("");tvOpt.setText("*"+ " ");tvN1.setText(num1.toString());
+                    eliminateDotAndZero(tvN1);
                     operator='*';
                     progress=true;
                     tvN2.setText("");}
@@ -626,7 +636,9 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         tvN1.setText(num1.toString());
+                        eliminateDotAndZero(tvN1);
                         tvN2.setText(num2.toString());
+                        eliminateDotAndZero(tvN2);
                         res.setText("");}
 
                 }
@@ -641,6 +653,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.print("Wrong button pressed");
                             }
                             res.setText("");tvOpt.setText("*"+ " ");tvN1.setText(num1.toString());
+                            eliminateDotAndZero(tvN1);
                             operator='*';
                             progress=true;
                             tvN2.setText("");
@@ -660,6 +673,7 @@ public class MainActivity extends AppCompatActivity {
                             Double resssult=operation();
                             num1=resssult;
                             tvN1.setText(resssult.toString());
+                            eliminateDotAndZero(tvN1);
                             tvN2.setText("");
                             tvOpt.setText("*"+ " ");
                             res.setText("");
@@ -677,6 +691,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Wrong button pressed");
                     }
                     res.setText("");tvOpt.setText("/"+ " ");tvN1.setText(num1.toString());
+                    eliminateDotAndZero(tvN1);
                     operator='/';
                     progress=true;
                     tvN2.setText("");}
@@ -691,7 +706,9 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         tvN1.setText(num1.toString());
+                        eliminateDotAndZero(tvN1);
                         tvN2.setText(num2.toString());
+                        eliminateDotAndZero(tvN2);
                         res.setText("");}
 
                 }
@@ -706,6 +723,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.print("Wrong button pressed");
                             }
                             res.setText("");tvOpt.setText("/"+ " ");tvN1.setText(num1.toString());
+                            eliminateDotAndZero(tvN1);
                             operator='/';
                             progress=true;
                             tvN2.setText("");
@@ -725,6 +743,7 @@ public class MainActivity extends AppCompatActivity {
                             Double resssult=operation();
                             num1=resssult;
                             tvN1.setText(resssult.toString());
+                            eliminateDotAndZero(tvN1);
                             tvN2.setText("");
                             tvOpt.setText("/"+ " ");
                             res.setText("");
@@ -742,6 +761,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Wrong button pressed");
                     }
                     res.setText("");tvOpt.setText("^"+ " ");tvN1.setText(num1.toString());
+                    eliminateDotAndZero(tvN1);
                     operator='^';
                     progress=true;
                     tvN2.setText("");}
@@ -756,7 +776,9 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         tvN1.setText(num1.toString());
+                        eliminateDotAndZero(tvN1);
                         tvN2.setText(num2.toString());
+                        eliminateDotAndZero(tvN2);
                         res.setText("");}
 
                 }
@@ -771,6 +793,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.print("Wrong button pressed");
                             }
                             res.setText("");tvOpt.setText("^"+ " ");tvN1.setText(num1.toString());
+                            eliminateDotAndZero(tvN1);
                             operator='^';
                             progress=true;
                             tvN2.setText("");
@@ -790,6 +813,7 @@ public class MainActivity extends AppCompatActivity {
                             Double resssult=operation();
                             num1=resssult;
                             tvN1.setText(resssult.toString());
+                            eliminateDotAndZero(tvN1);
                             tvN2.setText("");
                             tvOpt.setText("^"+ " ");
                             res.setText("");
@@ -808,6 +832,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Wrong button pressed");
                     }
                     res.setText("");tvOpt.setText("S"+ " ");tvN1.setText(num1.toString());
+                    eliminateDotAndZero(tvN1);
                     operator='s';
                     progress=true;
                     tvN2.setText("");}
@@ -822,7 +847,9 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         tvN1.setText(num1.toString());
+                        eliminateDotAndZero(tvN1);
                         tvN2.setText(num2.toString());
+                        eliminateDotAndZero(tvN2);
                         res.setText("");}
 
                 }
@@ -837,6 +864,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.print("Wrong button pressed");
                             }
                             res.setText("");tvOpt.setText("Sqrt"+ " ");tvN1.setText(num1.toString());
+                            eliminateDotAndZero(tvN1);
                             operator='s';
                             progress=true;
                             tvN2.setText("");
@@ -856,6 +884,7 @@ public class MainActivity extends AppCompatActivity {
                             Double resssult=operation();
                             num1=resssult;
                             tvN1.setText(resssult.toString());
+                            eliminateDotAndZero(tvN1);
                             tvN2.setText("");
                             tvOpt.setText("Sqrt"+ " ");
                             res.setText("");
@@ -898,24 +927,31 @@ public class MainActivity extends AppCompatActivity {
                 if(res.getText().length()==0&&tvN1.getText().length()==0&&tvN2.getText().length()==0){System.out.print("Wrong button pressed");}
                 else if (progress){
                     res.setText(result.toString());tvN2.setText(num2.toString());
+                    eliminateDotAndZero(tvN2);
                     num1=0.0;
                     num2=0.0;
                     result=0.0;
                     operator=' ';
-                    progress=false;}
+                    progress=false;
+                }
+                eliminateDotAndZero(res);
             }
+
         });
         btMS.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if(res.getText().length()!=0){
                     memory= Double.parseDouble(res.getText().toString());
-                    mem.setText(memory.toString());}
+                    mem.setText(memory.toString());
+                    eliminateDotAndZero(mem);
+                }
             }
         });
         btMR.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
                 res.setText(memory.toString());
+                eliminateDotAndZero(res);
             }
         });
         /*btMC.setOnClickListener(new View.OnClickListener(){
@@ -951,6 +987,7 @@ public class MainActivity extends AppCompatActivity {
                 if ((res.getText().toString().length() != 0) && Double.parseDouble(res.getText().toString()) != 0.0) {
                     minus = -1.0 * Double.parseDouble(res.getText().toString());
                     res.setText(minus.toString());
+                    eliminateDotAndZero(res);
                 }
 
                 //
@@ -967,7 +1004,8 @@ public class MainActivity extends AppCompatActivity {
         ressult=Double.parseDouble(res.getText().toString());
         }
         ressult++;
-        res.setText(""+ressult);
+        res.setText("" + ressult);
+        eliminateDotAndZero(res);
     }
 
     private void buttonRandomColor(TextView res) {
@@ -1271,7 +1309,12 @@ public void buttonOriginalPosition(){
         // Setting the parameters on the AdView
         adV.setLayoutParams(tvLayoutParameters);
     }
-
+public void eliminateDotAndZero(TextView resss){
+    if(resss.getText().length()>0){
+    if((resss.getText().charAt(resss.getText().length()-1))=='0'&& (resss.getText().charAt(resss.getText().length()-2))=='.'){
+        resss.setText(resss.getText().toString().substring(0, resss.getText().length() - 2));
+    }}
+}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -1281,11 +1324,11 @@ public void buttonOriginalPosition(){
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             Intent settingIntent = new Intent(getApplicationContext(),Setting.class);
             startActivity(settingIntent);
             return true;
-        }
+        }*/
         if (id == R.id.normal) {
             buttonNormalColor(res);
             crazy=false;
