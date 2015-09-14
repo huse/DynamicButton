@@ -65,14 +65,18 @@ public class MainActivity extends AppCompatActivity {
     Integer abtDevide[]={0,0};
     int alpha = 155;
     int shake=0;
+    float pixels;
+
     int nineHeight;
     int twoNineHeight;
     int textNineHeight;
     int textButtonSize;
     int forthWidth;
+
     boolean progress= true;
-    boolean crazy= true;
-    boolean superCrazy= true;
+    boolean crazy= false;
+    boolean superCrazy= false;
+
 
     // The following are used for the shake detection
     private SensorManager mSensorManager;
@@ -84,12 +88,18 @@ public class MainActivity extends AppCompatActivity {
     Button btMS,btMC,btMR,btBack,bt1,bt2, bt3,btClear,bt4,bt5,bt6,btAdd,bt7, bt8, bt9, btSub,btDot,bt0,btEqual,btMulti,btPow, btSqrt,btMinus,btDevide;
     ToggleButton toggle;
     TextView res;
+    TextView mem;
+    TextView tvN1;
+    TextView tvN2;
+    double width;
+    int maximumResLength =20;
+    int maximumResLength16 =50;
     public void widthHeight(){}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 13, getResources().getDisplayMetrics());
 
 // this code is for Interstitial ads
         mInterstitialAd = new InterstitialAd(this);
@@ -115,43 +125,76 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int height = displaymetrics.heightPixels;
-        int width = displaymetrics.widthPixels;
+        width = displaymetrics.widthPixels;
         nineHeight=height/10;
         twoNineHeight= nineHeight  * 18/10;
         textNineHeight= nineHeight/12;
-        textButtonSize= nineHeight/8;
-        forthWidth = width / 4;
+        textButtonSize= nineHeight/5;
+        forthWidth = (int)width / 4;
+        if (height<1300){
+            textNineHeight= nineHeight/6;
+           // textButtonSize= nineHeight/2;
+        }
+        double ratio= (height/width );
+        /*int size = getResources().getConfiguration().screenLayout;
+
+        if ((size & Configuration.SCREENLAYOUT_SIZE_XLARGE)==Configuration.SCREENLAYOUT_SIZE_XLARGE){
+            textNineHeight= nineHeight/6;
+        }*/
+        //float HEIGHT2=textNineHeight;
+        // int height33 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, HEIGHT2, getResources().getDisplayMetrics());
+
+        //You can set the <HEIGHT> anything which is appropriate for you for testing. EX:
+       // textView.setTextSize(height);
+
+
         // Creating a new RelativeLayout
         RelativeLayout relativeLayout = new RelativeLayout(this);
 
         // Defining the RelativeLayout layout parameters with Fill_Parent
         RelativeLayout.LayoutParams relativeLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.FILL_PARENT);
 
+
+
         final TextView tvMemory = new TextView(this);
         tvMemory.setText("M: ");
         tvMemory.setTextSize(textNineHeight);
-        final TextView mem = new TextView(this);
+       // Spannable span = new SpannableString("B");
+        //span.setSpan(new RelativeSizeSpan(1f), 0, span.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        //tvMemory.setText(span);
+        mem = new TextView(this);
         mem.setText("");
+       //mem.setTextSize(TypedValue.COMPLEX_UNIT_SP,textNineHeight);
         mem.setTextSize(textNineHeight);
-        final TextView tvN1 = new TextView(this);
+        //mem.setTextSize(height33);
+        tvN1 = new TextView(this);
         tvN1.setText("");
         tvN1.setTextSize(textNineHeight);
         final TextView tvOpt = new TextView(this);
         tvOpt.setText("");
         tvOpt.setTextSize(textNineHeight);
         tvOpt.setTextColor(0xFFF06D2F);
-        final TextView tvN2 = new TextView(this);
+        tvN2 = new TextView(this);
         tvN2.setText("");
         tvN2.setTextSize(textNineHeight);
         res = new TextView(this);
         res.setText("");
-        res.setTextSize(18 * textNineHeight / 10);
+       // res.setTextSize(18 * textNineHeight / 6);
+        res.setTextSize(twoNineHeight * 3 / 5);
+       // res.setHeight(twoNineHeight * 3 / 5);
+        //mem.setText(twoNineHeight * 3 / 7+"");
+
         // Creating a new Left Button
         bt1 = new Button(this);
         bt1.setText("1");
-        bt1.setWidth(forthWidth);bt1.setHeight(nineHeight);
+        bt1.setWidth(forthWidth);
+        bt1.setHeight(nineHeight);
         bt1.setTextSize(textButtonSize);
-         bt2 = new Button(this);
+        //bt1.setTextSize(TypedValue.COMPLEX_UNIT_SP, textButtonSize);
+       // Spannable span1 = new SpannableString("1");
+       // span1.setSpan(new RelativeSizeSpan(5f), 0, span1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+       // bt1.setText(span1);
+        bt2 = new Button(this);
         bt2.setText("2");
         bt2.setWidth(forthWidth);bt2.setHeight(nineHeight);
         bt2.setTextSize(textButtonSize);
@@ -328,16 +371,14 @@ public class MainActivity extends AppCompatActivity {
 				 * device has been shook.
 				 */
 
-               // Random rand = new Random();
-                 //The random generator creates values between [0,256) for use as RGB values used below to create a random color
+                // Random rand = new Random();
+                //The random generator creates values between [0,256) for use as RGB values used below to create a random color
                 //We call the RelativeLayout object and we change the color.  The first parameter in argb() is the alpha.
-                if(crazy&&!superCrazy){
-                buttonRandomColor(res);
+                if (crazy && !superCrazy) {
+                    buttonRandomColor(res);
                     addToResultByShake();
 
-                }
-
-                else if (superCrazy){
+                } else if (superCrazy) {
                     addToResultByShake();
                     buttonRandomColor(res);
                     randomPositions();
@@ -358,8 +399,10 @@ public class MainActivity extends AppCompatActivity {
         bt1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
-                if (progress)
+                if (progress){
                     res.setText(res.getText() + "1");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress) {
                     res.setText("");
                     tvOpt.setText("");
@@ -372,72 +415,90 @@ public class MainActivity extends AppCompatActivity {
         });
         bt2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"2");
+                decreasTextViewSize(res);
+            }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"2");progress=true;}
             }
         });
         bt3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"3");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"3");progress=true;}
             }
         });
         bt4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"4");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"4");progress=true;}
             }
         });
         bt5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"5");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"5");progress=true;}
             }
         });
         bt6.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"6");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"6");progress=true;}
             }
         });
         bt7.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"7");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"7");progress=true;}
             }
         });
         bt8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"8");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"8");progress=true;}
             }
         });
         bt9.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"9");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"9");progress=true;}
             }
         });
         bt0.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (progress)
+                if (progress){
                     res.setText(res.getText()+"0");
+                    decreasTextViewSize(res);
+                }
                 else if (!progress)
                 { res.setText("");tvOpt.setText("");tvN1.setText("");tvN2.setText("");res.setText(res.getText()+"0");progress=true;}
             }
@@ -446,7 +507,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (progress){
                     if(res.getText().toString().length() == 0){
-                        res.setText(res.getText() + "0.");}
+                        res.setText(res.getText() + "0.");
+                        decreasTextViewSize(res);
+                    }
                     else if(!res.getText().toString().contains(".")) {
                         res.setText(res.getText() + ".");
                     }}
@@ -466,6 +529,7 @@ public class MainActivity extends AppCompatActivity {
         btBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 res.setText(TruncatLast.truncat(res.getText().toString()));
+                decreasTextViewSize(res);
 
             }
         });
@@ -935,6 +999,19 @@ public class MainActivity extends AppCompatActivity {
                     progress=false;
                 }
                 eliminateDotAndZero(res);
+                decreasTextViewSize(res);
+
+
+              /*  Paint paint = new Paint();
+                Rect bounds = new Rect();
+                int text_height = 0;
+                int text_width = 0;
+                String text = res.getText().toString();
+                paint.getTextBounds(text, 0, text.length(), bounds);
+                text_height =  bounds.height();
+                text_width =  bounds.width();
+               tvN1.setText(text_height+"");
+               tvN2.setText(text_width+"");*/
             }
 
         });
@@ -952,6 +1029,7 @@ public class MainActivity extends AppCompatActivity {
 
                 res.setText(memory.toString());
                 eliminateDotAndZero(res);
+                decreasTextViewSize(res);
             }
         });
         /*btMC.setOnClickListener(new View.OnClickListener(){
@@ -1007,7 +1085,38 @@ public class MainActivity extends AppCompatActivity {
         res.setText("" + ressult);
         eliminateDotAndZero(res);
     }
+    private int isTooLarge (TextView text, String newText) {
+        int i=0;
 
+        //float textWidth = text.getPaint().measureText(newText);
+
+       if(text.getText().length()==2){
+         i= text.getMeasuredWidth();
+          maximumResLength =(int)(width/i);
+           maximumResLength16=(maximumResLength*50)/15;
+        }
+
+
+       return maximumResLength;
+
+
+    }
+public void decreasTextViewSize(TextView ress){
+    int  length= isTooLarge (ress, ress.getText().toString());
+    if(ress.getText().length()<length){
+        ress.setTextSize(18 * textNineHeight / 6);
+    }
+    if(ress.getText().length()>length&& ress.getText().length()<maximumResLength16){
+        ress.setTextSize(18 * textNineHeight / 10);
+    }
+    if(ress.getText().length()>maximumResLength16){
+        ress.setTextSize(18 * textNineHeight / 18);
+    }
+
+
+
+
+}
     private void buttonRandomColor(TextView res) {
         Random rand = new Random();
         res.setBackgroundColor(Color.argb(alpha, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)));
