@@ -6,7 +6,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.kpr.hus.dynamicbutton.Instruction">
 
-    <TextView android:text="   App starts at Normal mode, but Super Crazy mode, if you shake your device you'll see the buttons change color and position. \n\n   If you prefer just the color change chose crazy mode from option.\n  Also the number would be incremented one by each shake.\n In Normal mode color and position do not change by shaking. \n\n   " android:layout_width="wrap_content"
+    <TextView android:text="   App starts at Normal mode, In Normal mode color and position do not change by shaking.\n\n If you chose Super Crazy mode, you'll see the buttons change color and position by shaking the device. \n\n   If you prefer just the color change chose crazy mode from option.\n\n  Also number displaying on board will be incremented by one in crazy and super crazy mode by each shake.\n  \n\n   " android:layout_width="wrap_content"
         android:textSize="20dp"
         android:layout_height="wrap_content" />
 
