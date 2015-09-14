@@ -1,10 +1,7 @@
 package com.kpr.hus.dynamicbutton;
 
-import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,14 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Setting extends AppCompatActivity {
-    private SensorManager mSensorManager;
-    private ShakeDetector mShakeDetector;
-    private Sensor mAccelerometer;
+ class Setting extends AppCompatActivity {
 static TextView tv1;
     EditText et1;
     Button btSet;
-    static float sensor=1f;
+    static float sensor=5f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +27,20 @@ static TextView tv1;
             @Override
             public void onClick(View v) {
                 String ss= et1.getText().toString();
+                //tv1.setText(ss);
+                //ss=ss+"F";
 
+               //Double dd= Double.parseDouble(tv1.getText().toString());
                sensor=Float.parseFloat(ss);
             }
         });
     }
 
 public static float sensitivity(){
-  return sensor;
+
+
+
+    return sensor;
 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,5 +63,4 @@ public static float sensitivity(){
 
         return super.onOptionsItemSelected(item);
     }
-
 }

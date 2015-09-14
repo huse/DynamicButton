@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
 // this code is for Interstitial ads
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId("ca-app-pub-6744562395705685");
 
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("YOUR_DEVICE_HASH")
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
         btMinus.setTextSize(textButtonSize);
         // this code is for banner advertise
         AdView mAdView = new AdView(this);
-        mAdView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+        mAdView.setAdUnitId("ca-app-pub-6744562395705685");
         mAdView.setAdSize(AdSize.SMART_BANNER);
         AdRequest adRequest2 = new AdRequest.Builder().addTestDevice("YOUR_DEVICE_HASH").build();
         LayoutAddAdView(mAdView, RelativeLayout.ALIGN_PARENT_LEFT, 0,(twoNineHeight + 6 * nineHeight)+(height/592) , 0, 0);
@@ -377,11 +377,13 @@ public class MainActivity extends AppCompatActivity {
                 if (crazy && !superCrazy) {
                     buttonRandomColor(res);
                     addToResultByShake();
+                    decreasTextViewSize(res);
 
                 } else if (superCrazy) {
                     addToResultByShake();
                     buttonRandomColor(res);
                     randomPositions();
+                    decreasTextViewSize(res);
 
                 }
             }
